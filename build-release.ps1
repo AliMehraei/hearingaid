@@ -3,7 +3,7 @@
   Builds the signed release files into dist\:
     hearingaid-<version>.apk       GitHub build (updates itself from GitHub releases)
     hearingaid-<version>-play.aab  Google Play bundle
-    SHA256SUMS.txt                 checksums; the in-app updater refuses an APK not listed here
+    SHA256SUMS.txt                 checksum of the APK; the in-app updater refuses an APK not listed here
 
 .DESCRIPTION
   Needs keystore.properties in the project root (git-ignored) pointing at the release key:
@@ -40,12 +40,9 @@ $aab = "hearingaid-$version-play.aab"
 Copy-Item app\build\outputs\apk\github\release\app-github-release.apk "dist\$apk"
 Copy-Item app\build\outputs\bundle\playRelease\app-play-release.aab "dist\$aab"
 
-# sha256sum format: "<hash>  <file name>"
-$sums = foreach ($file in $apk, $aab) {
-    $hash = (Get-FileHash "dist\$file" -Algorithm SHA256).Hash.ToLowerInvariant()
-    "$hash  $file"
-}
-Set-Content dist\SHA256SUMS.txt -Value $sums -Encoding ascii
+# sha256sum format: "<hash>  <file name>". Only the APK goes on GitHub; the .aab is for Play.
+$hash = (Get-FileHash "dist\$apk" -Algorithm SHA256).Hash.ToLowerInvariant()
+Set-Content dist\SHA256SUMS.txt -Value "$hash  $apk" -Encoding ascii
 
 Get-ChildItem dist | Format-Table Name, Length
 Write-Host "Done. Upload dist\$apk and dist\SHA256SUMS.txt to a GitHub release tagged v$version." -ForegroundColor Green
