@@ -1,0 +1,43 @@
+# Gradle and Android build output
+.gradle/
+build/
+.kotlin/
+.cxx/
+.externalNativeBuild/
+captures/
+dist/
+*.apk
+*.aab
+*.ap_
+*.dex
+output-metadata.json
+
+# Local machine settings (SDK path, IDE state)
+local.properties
+.idea/
+*.iml
+.vscode/
+.vs/
+
+# Signing: keys and passwords never go in the repo
+keystore.properties
+*.jks
+*.keystore
+*.p12
+*.pfx
+*.pem
+*.key
+signing/
+
+# Secrets some Android projects pick up
+google-services.json
+secrets.properties
+.env
+.env.*
+
+# Logs, heap dumps and OS files
+*.log
+*.hprof
+.DS_Store
+Thumbs.db
+desktop.ini

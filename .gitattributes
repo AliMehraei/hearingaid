@@ -1,0 +1,13 @@
+* text=auto
+
+# shell scripts must stay LF or they fail on macOS/Linux
+gradlew text eol=lf
+*.sh    text eol=lf
+
+# Windows scripts
+*.bat text eol=crlf
+*.ps1 text eol=crlf
+
+*.jar binary
+*.png binary
+*.webp binary

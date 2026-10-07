@@ -1,0 +1,408 @@
+<title>Hearing Aid Play Store Launch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: single reading column with a sticky phase index on wide screens; each phase is a checklist the reader ticks off. */
+:root {
+  --bg: #f6f8f8;
+  --surface: #ffffff;
+  --fg: #142224;
+  --muted: #566a6c;
+  --line: #d6e1e1;
+  --accent: #00696e;
+  --accent-soft: #dff1f1;
+  --warn: #9a4a00;
+  --warn-soft: #fff1e0;
+  --code-bg: #eef3f3;
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1717; --surface: #162122; --fg: #e3eeee; --muted: #9db2b3; --line: #2a3b3c;
+    --accent: #4fd8de; --accent-soft: #143436; --warn: #ffb35c; --warn-soft: #34240f; --code-bg: #1c2a2b;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1717; --surface: #162122; --fg: #e3eeee; --muted: #9db2b3; --line: #2a3b3c;
+  --accent: #4fd8de; --accent-soft: #143436; --warn: #ffb35c; --warn-soft: #34240f; --code-bg: #1c2a2b;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg);
+  font: 17px/1.6 var(--font-body);
+  padding-inline: 20px; padding-block: 0 64px;
+}
+.wrap { max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 48px; }
+@media (max-width: 860px) { .wrap { grid-template-columns: minmax(0, 1fr); gap: 0; } nav.index { display: none; } }
+
+header.top { max-width: 1080px; margin: 0 auto; padding-block: 48px 32px; display: grid; gap: 14px; }
+.eyebrow { font: 600 13px/1 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+h1 { font: 800 clamp(34px, 6vw, 56px)/1.02 var(--font-display); margin: 0; text-wrap: balance; letter-spacing: -.01em; }
+.lede { font-size: 19px; color: var(--muted); max-width: 62ch; margin: 0; }
+
+.timeline { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.timeline span { font: 600 13px/1 var(--font-mono); padding: 8px 12px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
+.timeline span.long { background: var(--warn-soft); color: var(--warn); }
+
+nav.index { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 24px); align-self: start; display: grid; gap: 4px; padding-top: 8px; }
+nav.index a { color: var(--muted); text-decoration: none; font-size: 15px; padding: 6px 10px; border-radius: 8px; display: flex; gap: 10px; }
+nav.index a:hover, nav.index a:focus-visible { background: var(--accent-soft); color: var(--fg); outline: none; }
+nav.index b { font: 600 13px/1.6 var(--font-mono); color: var(--accent); min-width: 1.6em; }
+nav.index .progress { font: 13px var(--font-mono); color: var(--muted); padding: 12px 10px 0; }
+
+main { min-width: 0; display: grid; gap: 56px; }
+section { display: grid; gap: 16px; scroll-margin-top: 24px; }
+h2 { font: 800 30px/1.15 var(--font-display); margin: 0; display: flex; gap: 14px; align-items: baseline; text-wrap: balance; }
+h2 .n { font: 600 15px/1 var(--font-mono); color: var(--accent); border: 1.5px solid var(--accent); border-radius: 6px; padding: 5px 7px; flex: none; transform: translateY(-4px); }
+h3 { font: 600 20px/1.3 var(--font-display); margin: 8px 0 0; }
+p { margin: 0; max-width: 68ch; }
+a { color: var(--accent); }
+.muted { color: var(--muted); }
+code { font: 0.88em var(--font-mono); background: var(--code-bg); padding: 1px 5px; border-radius: 4px; }
+
+.callout { border: 1.5px solid var(--warn); background: var(--warn-soft); border-radius: 12px; padding: 20px 22px; display: grid; gap: 12px; }
+.callout h3 { margin: 0; color: var(--warn); }
+.callout ul { margin: 0; padding-left: 20px; display: grid; gap: 8px; }
+
+ul.check { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+ul.check li { display: flex; gap: 12px; align-items: flex-start; padding: 8px 0; border-bottom: 1px solid var(--line); }
+ul.check li:last-child { border-bottom: 0; }
+ul.check input { width: 20px; height: 20px; margin-top: 3px; accent-color: var(--accent); flex: none; cursor: pointer; }
+ul.check label { cursor: pointer; min-width: 0; }
+ul.check input:checked + label { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--line); }
+
+.code { position: relative; min-width: 0; }
+.code pre { margin: 0; background: var(--code-bg); border-radius: 10px; padding: 16px 18px; overflow-x: auto; font: 14px/1.55 var(--font-mono); }
+.code .file { font: 600 12px/1 var(--font-mono); color: var(--muted); margin-bottom: 6px; letter-spacing: .03em; }
+.copy { position: absolute; right: 8px; top: 26px; font: 600 12px var(--font-mono); background: var(--surface); color: var(--fg); border: 1px solid var(--line); border-radius: 6px; padding: 5px 9px; cursor: pointer; }
+.copy:hover, .copy:focus-visible { border-color: var(--accent); outline: none; }
+pre .c { color: var(--muted); }
+
+.tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 15px; }
+th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font: 600 12px var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+tr:last-child td { border-bottom: 0; }
+td.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+.answers { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.answer { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; display: grid; gap: 4px; align-content: start; }
+.answer .q { font: 600 12px var(--font-mono); letter-spacing: .05em; text-transform: uppercase; color: var(--muted); }
+.answer .a { font-weight: 700; }
+.answer p { font-size: 15px; color: var(--muted); }
+
+footer { color: var(--muted); font-size: 14px; display: grid; gap: 8px; }
+footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
+
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+</style>
+
+<header class="top">
+  <div class="eyebrow">Release guide · Android · checked October 2026</div>
+  <h1>Getting Hearing Aid onto Google Play</h1>
+  <p class="lede">Everything needed to take the app in this repository from a GitHub release to a public Play Store listing, including the code changes this app still needs and the forms Google asks about microphone apps.</p>
+  <div class="timeline" aria-label="Rough timeline">
+    <span>Account: 1–3 days</span>
+    <span>App changes: 1 day</span>
+    <span class="long">Closed test: 14 days minimum</span>
+    <span>Review: a few days</span>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="index" aria-label="Steps">
+    <a href="#blockers"><b>!</b>Fix first</a>
+    <a href="#account"><b>1</b>Developer account</a>
+    <a href="#code"><b>2</b>Prepare the app</a>
+    <a href="#build"><b>3</b>Signed bundle</a>
+    <a href="#listing"><b>4</b>Store listing</a>
+    <a href="#content"><b>5</b>App content forms</a>
+    <a href="#testing"><b>6</b>Closed test</a>
+    <a href="#production"><b>7</b>Production</a>
+    <a href="#updates"><b>8</b>Updates</a>
+    <div class="progress" id="progress">0 of 0 done</div>
+  </nav>
+
+  <main>
+    <section id="blockers">
+      <div class="callout">
+        <h3>Four things that would block this app today</h3>
+        <ul>
+          <li><strong>Target API level.</strong> Since 31 August 2026, new apps must target Android 16 (API 36). The project targets API 34, so Play will reject the upload until step 2 is done.</li>
+          <li><strong>Package name.</strong> The app uses <code>com.argbyte.hearingaid</code>. It becomes permanent the moment you upload, so change it before the first upload if you want another.</li>
+          <li><strong>The word “Hearing Aid”.</strong> In many countries (the US, the EU) “hearing aid” is a regulated medical-device term. Listing the app under that name invites rejection or a request for clearance papers. Publish it as a sound amplifier with captions.</li>
+          <li><strong>Where you are registered.</strong> Play Console only accepts developers in supported countries and does not serve sanctioned regions such as Iran. If that applies to you, Iranian stores like Cafe Bazaar and Myket accept the same signed app.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="account">
+      <h2><span class="n">1</span>Create a developer account</h2>
+      <p>Sign up at <a href="https://play.google.com/console/signup">play.google.com/console</a> with a Google account you will keep for years.</p>
+      <ul class="check">
+        <li><input type="checkbox" id="c-acc-type"><label for="c-acc-type">Choose <strong>Personal</strong> or <strong>Organization</strong>. Organization accounts need a D-U-N-S number but skip the 14-day closed-test rule in step 6.</label></li>
+        <li><input type="checkbox" id="c-acc-fee"><label for="c-acc-fee">Pay the one-time US$25 registration fee.</label></li>
+        <li><input type="checkbox" id="c-acc-id"><label for="c-acc-id">Verify your identity with a government ID, and verify your phone number and email. This usually takes 1–3 days.</label></li>
+        <li><input type="checkbox" id="c-acc-device"><label for="c-acc-device">Install the Play Console app on an Android phone and confirm you own a real device. New personal accounts are asked to.</label></li>
+      </ul>
+    </section>
+
+    <section id="code">
+      <h2><span class="n">2</span>Prepare the app</h2>
+      <p>Signing, the package name and the <code>play</code> flavor (no install permission, no network use) are already set up in the project. What remains is the target API level.</p>
+
+      <h3>Raise the target to Android 16</h3>
+      <p>Install the Android 16 SDK, then upgrade the Android Gradle Plugin to one that supports API 36 (8.10 or newer, with the Gradle version it asks for).</p>
+      <div class="code">
+        <div class="file">Terminal</div>
+        <button class="copy" type="button">Copy</button>
+<pre>sdkmanager "platforms;android-36" "build-tools;36.0.0"</pre>
+      </div>
+
+      <h3>Set a permanent ID and turn on signing</h3>
+      <div class="code">
+        <div class="file">app/build.gradle.kts</div>
+        <button class="copy" type="button">Copy</button>
+<pre>import java.util.Properties
+
+val keystoreProperties = Properties().apply {
+    val f = rootProject.file("keystore.properties")
+    if (f.exists()) f.inputStream().use { load(it) }
+}
+
+android {
+    namespace = "com.hearingaid.app"
+    compileSdk = 36
+
+    defaultConfig {
+        applicationId = "com.argbyte.hearingaid" <span class="c">// permanent once uploaded</span>
+        minSdk = 26
+        targetSdk = 36
+        versionCode = 1        <span class="c">// +1 for every upload</span>
+        versionName = "1.0.0"  <span class="c">// what users see</span>
+    }
+
+    signingConfigs {
+        create("release") {
+            storeFile = file(keystoreProperties.getProperty("storeFile"))
+            storePassword = keystoreProperties.getProperty("storePassword")
+            keyAlias = keystoreProperties.getProperty("keyAlias")
+            keyPassword = keystoreProperties.getProperty("keyPassword")
+        }
+    }
+
+    buildTypes {
+        release {
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"))
+            signingConfig = signingConfigs.getByName("release")
+        }
+    }
+}</pre>
+      </div>
+
+      <ul class="check">
+        <li><input type="checkbox" id="c-code-sdk"><label for="c-code-sdk">Android 16 SDK installed, plugin upgraded, <code>compileSdk</code> and <code>targetSdk</code> set to 36.</label></li>
+        <li><input type="checkbox" id="c-code-id"><label for="c-code-id">Package name <code>com.argbyte.hearingaid</code> confirmed, or changed before the first upload.</label></li>
+        <li><input type="checkbox" id="c-code-name"><label for="c-code-name">App name in <code>strings.xml</code> changed from “Hearing Aid” in all 19 languages, e.g. “Hearing Helper”.</label></li>
+        <li><input type="checkbox" id="c-code-edge"><label for="c-code-edge">Checked on an Android 15 or 16 phone that nothing hides under the status bar or gesture bar. Targeting API 35+ forces edge-to-edge drawing.</label></li>
+        <li><input type="checkbox" id="c-code-real"><label for="c-code-real">Tested the amplifier with real wired and Bluetooth earphones, the hearing test, and captions on at least one physical phone.</label></li>
+      </ul>
+    </section>
+
+    <section id="build">
+      <h2><span class="n">3</span>Build a signed app bundle</h2>
+      <p>Play takes an Android App Bundle (<code>.aab</code>), not an APK. You sign it with an <em>upload key</em>; Google then re-signs it for users with the app signing key it keeps for you.</p>
+      <div class="code">
+        <div class="file">Terminal · only if you have no key yet (the GitHub release key in ~/.hearingaid can be your upload key)</div>
+        <button class="copy" type="button">Copy</button>
+<pre>keytool -genkeypair -v -keystore upload-keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias upload</pre>
+      </div>
+      <div class="code">
+        <div class="file">keystore.properties · project root, never commit</div>
+        <button class="copy" type="button">Copy</button>
+<pre>storeFile=../upload-keystore.jks
+storePassword=YOUR_STORE_PASSWORD
+keyAlias=upload
+keyPassword=YOUR_KEY_PASSWORD</pre>
+      </div>
+      <div class="code">
+        <div class="file">Terminal · build</div>
+        <button class="copy" type="button">Copy</button>
+<pre>pwsh .\build-release.ps1
+<span class="c"># output: dist/hearingaid-&lt;version&gt;-play.aab</span></pre>
+      </div>
+      <ul class="check">
+        <li><input type="checkbox" id="c-build-key"><label for="c-build-key">Upload key created and backed up somewhere safe outside the project (password manager plus an offline copy).</label></li>
+        <li><input type="checkbox" id="c-build-ignore"><label for="c-build-ignore"><code>keystore.properties</code> and <code>*.jks</code> added to <code>.gitignore</code>.</label></li>
+        <li><input type="checkbox" id="c-build-aab"><label for="c-build-aab"><code>hearingaid-&lt;version&gt;-play.aab</code> built without errors.</label></li>
+      </ul>
+    </section>
+
+    <section id="listing">
+      <h2><span class="n">4</span>Create the app and its store listing</h2>
+      <p>In Play Console choose <strong>Create app</strong>, set the default language, mark it as an <strong>App</strong>, <strong>Free</strong>, and accept the declarations. Then fill <strong>Grow users → Store presence → Main store listing</strong>.</p>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Field</th><th>Limit</th><th>Suggestion for this app</th></tr></thead>
+          <tbody>
+            <tr><td>App name</td><td class="num">30 chars</td><td>Hearing Helper &amp; Captions</td></tr>
+            <tr><td>Short description</td><td class="num">80 chars</td><td>Turn your earphones into a personal sound amplifier, with live captions.</td></tr>
+            <tr><td>Full description</td><td class="num">4,000 chars</td><td>Features (amplifier, hearing test, per-ear tuning, noise reduction, captions, 19 languages), then the line “Not a medical device and not a replacement for a hearing aid.”</td></tr>
+            <tr><td>App icon</td><td class="num">512 × 512 PNG</td><td>Export the ear icon at full size, 32-bit PNG.</td></tr>
+            <tr><td>Feature graphic</td><td class="num">1024 × 500</td><td>Teal ground, the ear icon and the app name.</td></tr>
+            <tr><td>Phone screenshots</td><td class="num">2–8 images</td><td>Listen, Hearing test result, Adjust, Captions. Use 1080 × 1920 or larger so they can be featured.</td></tr>
+            <tr><td>Category</td><td class="num">one</td><td>Tools (or Medical only if you hold medical-device clearance)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul class="check">
+        <li><input type="checkbox" id="c-list-main"><label for="c-list-main">Main listing filled in and saved.</label></li>
+        <li><input type="checkbox" id="c-list-trans"><label for="c-list-trans">Translated listings added under <strong>Manage translations</strong> for the languages the app already speaks.</label></li>
+        <li><input type="checkbox" id="c-list-contact"><label for="c-list-contact">Support email set under <strong>Store settings</strong>. It is shown publicly.</label></li>
+      </ul>
+    </section>
+
+    <section id="content">
+      <h2><span class="n">5</span>Answer the App content forms</h2>
+      <p>Find these on the <strong>App content</strong> page (left menu, under <strong>Monitor and improve</strong>). Every one must be complete before any release, testing included. Suggested answers for this app:</p>
+      <div class="answers">
+        <div class="answer"><span class="q">Privacy policy</span><span class="a">Required</span><p>The app uses the microphone, so you need a public URL. A template is below.</p></div>
+        <div class="answer"><span class="q">Data safety</span><span class="a">No data collected or shared</span><p>Sound is processed on the phone and never stored or sent. Settings stay on the device. Mention in the policy that captions use the phone’s speech-recognition service.</p></div>
+        <div class="answer"><span class="q">Foreground service</span><span class="a">Microphone</span><p>Explain that amplification keeps running with the screen off. Add a link to a short unlisted video showing Start, screen off, and the notification.</p></div>
+        <div class="answer"><span class="q">Health apps</span><span class="a">Declare honestly</span><p>Select the hearing and accessibility features and state the app is not a regulated medical device.</p></div>
+        <div class="answer"><span class="q">Target audience</span><span class="a">18 and over</span><p>Choosing ages under 13 brings in the Families policy and extra review.</p></div>
+        <div class="answer"><span class="q">Content rating</span><span class="a">Fill the questionnaire</span><p>No violence, gambling or user content. Expect a rating for everyone.</p></div>
+        <div class="answer"><span class="q">Ads</span><span class="a">No ads</span><p>The app shows none.</p></div>
+        <div class="answer"><span class="q">App access</span><span class="a">No login needed</span><p>All features work without an account.</p></div>
+      </div>
+
+      <h3>Privacy policy to adapt</h3>
+      <p class="muted">Host it on any public page you control (GitHub Pages, Google Sites, your website). Replace the name and email.</p>
+      <div class="code">
+        <div class="file">privacy-policy.txt</div>
+        <button class="copy" type="button">Copy</button>
+<pre>Privacy Policy for Hearing Helper & Captions
+Last updated: [date]
+
+Hearing Helper & Captions ("the app") is made by [your name].
+
+Microphone. The app uses the microphone to amplify sound to your earphones.
+Audio is processed on your device in real time. It is not recorded, stored
+or sent anywhere by the app.
+
+Captions. When you turn on Captions, the app uses your phone's built-in
+speech-recognition service to turn speech into text. That service is
+provided by your phone (usually Google) and may process audio under its
+own privacy policy. The app does not save the text after you leave the screen.
+
+Settings and hearing test results are stored only on your device. You can
+delete them by clearing the app's data or uninstalling it.
+
+The app has no ads, no analytics and no accounts, and it shares no data
+with third parties.
+
+Contact: [your email]</pre>
+      </div>
+      <ul class="check">
+        <li><input type="checkbox" id="c-content-pp"><label for="c-content-pp">Privacy policy published and its URL entered.</label></li>
+        <li><input type="checkbox" id="c-content-ds"><label for="c-content-ds">Data safety form submitted.</label></li>
+        <li><input type="checkbox" id="c-content-fgs"><label for="c-content-fgs">Foreground service declaration and video link submitted.</label></li>
+        <li><input type="checkbox" id="c-content-rest"><label for="c-content-rest">Health apps, target audience, content rating, ads and app access completed.</label></li>
+      </ul>
+    </section>
+
+    <section id="testing">
+      <h2><span class="n">6</span>Run the closed test</h2>
+      <p>Personal accounts created after 13 November 2023 must keep <strong>at least 12 testers opted in for 14 days in a row</strong> before production access is granted. If the count drops below 12, the 14 days start again.</p>
+      <ul class="check">
+        <li><input type="checkbox" id="c-test-internal"><label for="c-test-internal">Optional first: upload the bundle to <strong>Internal testing</strong> and install it on your own phone through the opt-in link.</label></li>
+        <li><input type="checkbox" id="c-test-closed"><label for="c-test-closed">Create a <strong>Closed testing</strong> track, upload <code>hearingaid-&lt;version&gt;-play.aab</code>, and add testers by email list or Google Group.</label></li>
+        <li><input type="checkbox" id="c-test-recruit"><label for="c-test-recruit">Recruit 15 or more people so a few dropouts don’t reset the clock. People who wear hearing aids or have older relatives give the most useful feedback.</label></li>
+        <li><input type="checkbox" id="c-test-optin"><label for="c-test-optin">Every tester opened the opt-in link, accepted, and installed the app from Play.</label></li>
+        <li><input type="checkbox" id="c-test-fix"><label for="c-test-fix">Feedback fixed and new builds uploaded during the 14 days (raise <code>versionCode</code> each time).</label></li>
+      </ul>
+    </section>
+
+    <section id="production">
+      <h2><span class="n">7</span>Apply for production and release</h2>
+      <p>After 14 days, open <strong>Dashboard → Apply for production</strong>. Google asks how you recruited testers, what feedback you got, and what you changed. Answer specifically.</p>
+      <ul class="check">
+        <li><input type="checkbox" id="c-prod-apply"><label for="c-prod-apply">Production access application submitted and approved.</label></li>
+        <li><input type="checkbox" id="c-prod-countries"><label for="c-prod-countries">Countries and regions chosen under <strong>Production → Countries/regions</strong>.</label></li>
+        <li><input type="checkbox" id="c-prod-release"><label for="c-prod-release">Production release created with release notes in your main languages, then sent for review.</label></li>
+        <li><input type="checkbox" id="c-prod-rollout"><label for="c-prod-rollout">Optional: start with a staged rollout (20%) and watch <strong>Android vitals</strong> for crashes before going to 100%.</label></li>
+      </ul>
+    </section>
+
+    <section id="updates">
+      <h2><span class="n">8</span>Ship updates</h2>
+      <p>For every later version: raise <code>versionCode</code> by one, update <code>versionName</code>, run <code>pwsh .\build-release.ps1</code>, and upload the <code>-play.aab</code> to the production track (or to closed testing first). Google raises the required target API level every August, so plan one update a year to stay listed for new users.</p>
+      <ul class="check">
+        <li><input type="checkbox" id="c-upd-calendar"><label for="c-upd-calendar">Reminder set for next summer to move to the next target API level.</label></li>
+      </ul>
+    </section>
+
+    <footer>
+      <strong>Sources</strong>
+      <ul>
+        <li><a href="https://developer.android.com/google/play/requirements/target-sdk">Target API level requirements · Android Developers</a></li>
+        <li><a href="https://support.google.com/googleplay/android-developer/answer/14151465">App testing requirements for new personal developer accounts · Play Console Help</a></li>
+        <li><a href="https://support.google.com/googleplay/android-developer/answer/14738291">Health apps declaration form · Play Console Help</a></li>
+        <li><a href="https://support.google.com/googleplay/android-developer/answer/13392821">Foreground service declarations · Play Console Help</a></li>
+        <li><a href="https://support.google.com/googleplay/android-developer/answer/10787469">Data safety section · Play Console Help</a></li>
+      </ul>
+      <p>Rules change. Check each linked page before you submit.</p>
+    </footer>
+  </main>
+</div>
+
+<script>
+(function () {
+  const boxes = Array.from(document.querySelectorAll('ul.check input[type="checkbox"]'));
+  const progress = document.getElementById('progress');
+  const KEY = 'play-launch-checks';
+  let saved = {};
+  try { saved = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { saved = {}; }
+
+  function update() {
+    const done = boxes.filter(b => b.checked).length;
+    progress.textContent = done + ' of ' + boxes.length + ' done';
+  }
+  boxes.forEach(b => {
+    b.checked = !!saved[b.id];
+    b.addEventListener('change', () => {
+      saved[b.id] = b.checked;
+      try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch (e) {}
+      update();
+    });
+  });
+  update();
+
+  document.querySelectorAll('.copy').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const pre = btn.parentElement.querySelector('pre');
+      const text = pre.innerText;
+      const done = () => { btn.textContent = 'Copied'; setTimeout(() => { btn.textContent = 'Copy'; }, 1500); };
+      const fallback = () => {
+        const range = document.createRange();
+        range.selectNodeContents(pre);
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+        btn.textContent = 'Selected';
+      };
+      try {
+        navigator.clipboard.writeText(text).then(done, fallback);
+      } catch (e) { fallback(); }
+    });
+  });
+})();
+</script>

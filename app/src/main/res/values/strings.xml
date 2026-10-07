@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Hearing Aid</string>
+
+    <!-- Navigation -->
+    <string name="tab_listen">Listen</string>
+    <string name="tab_test">Hearing test</string>
+    <string name="tab_captions">Captions</string>
+    <string name="tab_adjust">Adjust</string>
+
+    <!-- First-run safety notice -->
+    <string name="safety_title">Before you start</string>
+    <string name="safety_body">This app turns your earphones into a personal sound amplifier. It is not a medical hearing aid and does not replace a hearing professional.\n\n• Start with the volume low and raise it slowly.\n• Loud sound for long periods can damage hearing.\n• See a doctor about sudden hearing loss, ear pain, dizziness or ringing.\n• For profound deafness, use the Captions tab.</string>
+    <string name="safety_accept">I understand</string>
+
+    <!-- Listen -->
+    <string name="start">START</string>
+    <string name="stop">STOP</string>
+    <string name="meter_mic">Microphone</string>
+    <string name="meter_ears">To your ears</string>
+    <string name="section_volume">Volume</string>
+    <string name="loudness">Loudness</string>
+    <string name="value_db">%1$d dB</string>
+    <string name="balance">Balance</string>
+    <string name="balance_left">Left %1$d%%</string>
+    <string name="balance_right">Right %1$d%%</string>
+    <string name="balance_centre">Centre</string>
+    <string name="section_situation">Situation</string>
+    <string name="preset_everyday">Everyday</string>
+    <string name="preset_conversation">Conversation</string>
+    <string name="preset_noisy">Noisy place</string>
+    <string name="preset_tv">TV &amp; music</string>
+    <string name="noise_reduction">Reduce background noise</string>
+    <string name="noise_reduction_detail">Lowers steady noise like fans, traffic, engines and hum</string>
+    <string name="section_microphone">Microphone</string>
+    <string name="mic_auto">Automatic</string>
+    <string name="mic_phone">Phone mic</string>
+    <string name="mic_headset">Headset mic</string>
+    <string name="mic_tip">Tip: put the phone near the person talking (on the table, or let them hold it) to hear them clearly over room noise.</string>
+    <string name="disclaimer">Not a medical device. Start with low volume. If you have sudden hearing loss, pain or ringing, see a doctor.</string>
+    <string name="warn_disconnected">Earphones disconnected. Sound is paused so the phone speaker doesn\'t howl.</string>
+    <string name="warn_connect">Connect wired or Bluetooth earphones to start.</string>
+    <string name="warn_bluetooth">Bluetooth adds about 0.15–0.3 s of delay, so voices may not match lips. Wired earphones give the most natural sound.</string>
+    <string name="no_earphones_connected">No earphones connected</string>
+    <string name="latency_line">%1$s · %2$d ms phone delay</string>
+
+    <!-- Devices -->
+    <string name="out_wired">Wired earphones</string>
+    <string name="out_hearing_aid">Hearing aid: %1$s</string>
+    <string name="out_bluetooth">Bluetooth: %1$s</string>
+    <string name="out_speaker">Phone speaker</string>
+    <string name="out_earpiece">Phone earpiece</string>
+    <string name="in_phone">Phone microphone</string>
+    <string name="in_headset">Headset microphone</string>
+    <string name="in_usb">USB microphone</string>
+
+    <!-- Errors -->
+    <string name="err_mic_permission">Microphone permission is needed.</string>
+    <string name="err_no_earphones">Connect earphones first. Using the phone speaker would cause loud feedback.</string>
+    <string name="err_audio">Audio error: %1$s</string>
+
+    <!-- Notification -->
+    <string name="channel_name">Hearing aid</string>
+    <string name="notif_title">Hearing aid is on</string>
+    <string name="notif_text">Amplifying sound to your earphones</string>
+    <string name="notif_stop">Turn off</string>
+
+    <!-- Hearing test -->
+    <string name="test_title">Hearing test</string>
+    <string name="test_intro">About 5 minutes. You\'ll hear short beeps at different pitches, one ear at a time. Tap the big button every time you hear a beep, even if it is very faint.</string>
+    <string name="test_tips">• Sit somewhere quiet.\n• Wear the earphones you will use with the app (left and right the right way round).\n• The app sets the volume itself during the test.</string>
+    <string name="test_start">Start test</string>
+    <string name="test_again">Take the test again</string>
+    <string name="connect_first">Connect earphones first.</string>
+    <string name="your_result">Your result</string>
+    <string name="result_applied">Your hearing aid has been tuned to this result. Fine-tune it in the Adjust tab.</string>
+    <string name="ear_left_caps">LEFT ear</string>
+    <string name="ear_right_caps">RIGHT ear</string>
+    <string name="test_ear_freq">%1$s · %2$d Hz</string>
+    <string name="i_hear_it">I HEAR IT</string>
+    <string name="cancel_test">Cancel test</string>
+    <string name="legend_right">O Right ear</string>
+    <string name="legend_left">X Left ear</string>
+    <string name="chart_hint">Lower on the chart = you need louder sound at that pitch.</string>
+    <string name="hz">%1$d Hz</string>
+    <string name="khz">%1$d kHz</string>
+
+    <!-- Captions -->
+    <string name="captions_start">Start captions</string>
+    <string name="captions_stop">Stop captions</string>
+    <string name="clear">Clear</string>
+    <string name="captions_hint">Speech around you appears here as text. Hearing aid sound pauses while captions are on.</string>
+    <string name="speech_language">Speech language</string>
+    <string name="cap_err_unavailable">No speech recognition service on this phone. Install or enable Google speech services.</string>
+    <string name="cap_err_permission">Microphone permission is needed for captions.</string>
+    <string name="cap_err_network">No internet. Download an offline speech pack for your language in phone settings.</string>
+    <string name="cap_err_language">Your phone\'s speech service doesn\'t support this language. Choose another, or install it in phone settings.</string>
+    <string name="cap_err_generic">Speech recognition keeps failing (code %1$d).</string>
+
+    <!-- Adjust -->
+    <string name="adjust_title">Fine-tune</string>
+    <string name="adjust_intro">Raise a pitch if voices sound muffled or unclear; lower it if it sounds sharp or tinny. Changes apply instantly while the hearing aid is on.</string>
+    <string name="same_both_ears">Same for both ears</string>
+    <string name="both_ears">Both ears</string>
+    <string name="left">Left</string>
+    <string name="right">Right</string>
+    <string name="band_gain">+%1$d dB</string>
+    <string name="band_title">%1$s · %2$s</string>
+    <string name="pitch_0">deep (hum, vowels)</string>
+    <string name="pitch_1">low (voice body)</string>
+    <string name="pitch_2">middle (vowels)</string>
+    <string name="pitch_3">upper (consonants)</string>
+    <string name="pitch_4">high (s, f, th)</string>
+    <string name="pitch_5">very high (birds, clarity)</string>
+    <string name="section_comfort">Comfort</string>
+    <string name="compression">Loud-sound softening</string>
+    <string name="comp_off">Off</string>
+    <string name="comp_normal">Normal</string>
+    <string name="comp_strong">Strong</string>
+    <string name="max_loudness">Maximum loudness (safety limit)</string>
+    <string name="voice_processing">Phone\'s call noise suppression</string>
+    <string name="voice_processing_detail">Uses the phone\'s built-in voice-call processing. Can help in noise; sounds less natural.</string>
+    <string name="reset_test">Reset to my test result</string>
+    <string name="reset_default">Reset to default</string>
+    <string name="section_language">Language</string>
+    <string name="app_language">App language</string>
+    <string name="phone_default">Phone default</string>
+
+    <!-- More -->
+    <string name="tab_more">More</string>
+    <string name="back">Back</string>
+    <string name="more_appearance">Appearance</string>
+    <string name="more_background">Background &amp; shortcuts</string>
+    <string name="more_help">Help</string>
+    <string name="more_about">About &amp; updates</string>
+
+    <!-- Appearance -->
+    <string name="mode_title">Light or dark</string>
+    <string name="mode_system">Same as phone</string>
+    <string name="mode_light">Light</string>
+    <string name="mode_dark">Dark</string>
+    <string name="skin_title">Colour skin</string>
+    <string name="skin_teal">Teal</string>
+    <string name="skin_ocean">Ocean</string>
+    <string name="skin_sunset">Sunset</string>
+    <string name="skin_forest">Forest</string>
+    <string name="skin_berry">Berry</string>
+    <string name="skin_contrast">High contrast</string>
+    <string name="skin_wallpaper">Wallpaper colours</string>
+    <string name="text_title">Text size</string>
+    <string name="text_normal">Normal</string>
+    <string name="text_large">Large</string>
+    <string name="text_xl">Extra large</string>
+
+    <!-- Background & shortcuts -->
+    <string name="auto_start">Start when the app opens</string>
+    <string name="auto_start_detail">Turns the hearing aid on by itself when earphones are connected.</string>
+    <string name="notif_hint_title">Notification buttons</string>
+    <string name="notif_hint_detail">While it is on, the notification has Quieter, Louder and Turn off buttons, even on the lock screen.</string>
+    <string name="tile_title">Quick Settings tile</string>
+    <string name="tile_detail">Swipe down from the top twice, tap the pencil and drag the Hearing aid tile in. Tap it to switch on or off from anywhere.</string>
+    <string name="battery_title">Keep it running</string>
+    <string name="battery_detail">Some phones close background apps to save battery. Set this app to “Unrestricted” or “Not optimized”.</string>
+    <string name="battery_ok">Battery saving won\'t stop this app.</string>
+    <string name="battery_button">Open battery settings</string>
+    <string name="notif_status">%1$s · %2$d dB</string>
+    <string name="notif_quieter">Quieter</string>
+    <string name="notif_louder">Louder</string>
+
+    <!-- About & updates -->
+    <string name="about_tagline">Turns your earphones into a personal hearing aid, with a hearing test and live captions.</string>
+    <string name="about_version">Version %1$s</string>
+    <string name="about_author">Author</string>
+    <string name="about_email">E-mail</string>
+    <string name="about_source">Source code</string>
+    <string name="about_website">Website</string>
+    <string name="about_license">License</string>
+    <string name="license_summary">Free for personal, non-commercial and educational use. Commercial use needs a license.</string>
+    <string name="copy_details">Copy details</string>
+    <string name="copied">Copied</string>
+    <string name="updates_title">Updates</string>
+    <string name="check_auto">Check for updates automatically</string>
+    <string name="check_now">Check now</string>
+    <string name="checking">Checking…</string>
+    <string name="up_to_date">You have the latest version.</string>
+    <string name="update_available">Version %1$s is available.</string>
+    <string name="install_update">Install %1$s</string>
+    <string name="downloading">Downloading… %1$d%%</string>
+    <string name="update_ready">Downloaded and checked. If Android asks, allow installs from this app, then tap Install.</string>
+    <string name="update_banner">Hearing Aid %1$s is out</string>
+    <string name="update_later">Later</string>
+    <string name="release_page">What\'s new</string>
+    <string name="updates_play">Updates arrive through Google Play.</string>
+    <string name="upd_err_network">Couldn\'t reach GitHub. Check your connection and try again.</string>
+    <string name="upd_err_checksum">The download didn\'t pass its safety check, so it wasn\'t installed. Try again later.</string>
+    <string name="upd_err_no_apk">This release has no Android app file yet.</string>
+
+    <!-- Help -->
+    <string name="help_online">Full guide on GitHub</string>
+    <string name="help_start_t">Getting started</string>
+    <string name="help_start_b">Connect your earphones, tap START and listen. Begin with low volume and raise it slowly. The notification lets you change the volume or turn it off from anywhere.</string>
+    <string name="help_test_t">Hearing test</string>
+    <string name="help_test_b">In a quiet room, wear your earphones and tap the big button every time you hear a beep, even a faint one. The app then tunes each ear and each pitch for you. You can take it again any time.</string>
+    <string name="help_earphones_t">Which earphones?</string>
+    <string name="help_earphones_b">Wired earphones sound the most natural. Bluetooth earphones such as AirPods or Galaxy Buds work too, but add a short delay, so voices may not match lips.</string>
+    <string name="help_noise_t">Noise and situations</string>
+    <string name="help_noise_b">Choose a situation (Conversation, Noisy place, TV &amp; music) and keep “Reduce background noise” on. In a loud room, put the phone near the person speaking.</string>
+    <string name="help_whistle_t">Whistling</string>
+    <string name="help_whistle_b">A whistle means sound leaks from the earphones back into the microphone. Lower the volume, push the earphones in further, or keep the phone away from your head.</string>
+    <string name="help_captions_t">Captions</string>
+    <string name="help_captions_b">For profound hearing loss, Captions shows speech as large text. Choose the language people around you speak. Some phones need internet or an offline speech pack.</string>
+    <string name="help_background_t">In the background</string>
+    <string name="help_background_b">The hearing aid keeps working with the screen off. Use the notification buttons, or add the Quick Settings tile to switch it on and off. See More › Background &amp; shortcuts.</string>
+    <string name="help_safety_t">Safety</string>
+    <string name="help_safety_b">This app is not a medical device. Loud sound can harm hearing. See a doctor about sudden hearing loss, ear pain, dizziness or ringing. Only use it to listen where you are allowed to.</string>
+</resources>
