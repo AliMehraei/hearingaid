@@ -26,6 +26,7 @@ object AppGraph {
     }
 
     internal fun init(app: Application) {
+        AppInfo.init(app)
         repository = SettingsRepository(app)
         engine = AudioEngine(app)
         updates = UpdateManager(app, repository)

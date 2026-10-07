@@ -29,7 +29,8 @@ $version = [regex]::Match($gradle, 'versionName\s*=\s*"([^"]+)"').Groups[1].Valu
 if (-not $version) { throw 'versionName not found in app\build.gradle.kts' }
 Write-Host "Building Hearing Aid $version" -ForegroundColor Cyan
 
-& .\gradlew.bat --console=plain testGithubReleaseUnitTest assembleGithubRelease bundlePlayRelease
+# clean: version numbers are compiled in, and an incremental build can leave old ones behind.
+& .\gradlew.bat --console=plain clean testGithubReleaseUnitTest assembleGithubRelease bundlePlayRelease
 if ($LASTEXITCODE -ne 0) { throw "Gradle failed ($LASTEXITCODE)" }
 
 New-Item -ItemType Directory -Force dist | Out-Null

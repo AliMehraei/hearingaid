@@ -5,6 +5,9 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## [Unreleased]
 
+### Fixed
+- About and the update check read the installed version from Android instead of a value compiled into the app, so an incremental build can never make the app report a stale version. The release script now always builds from clean.
+
 ## [1.0.0] - 2026-10-07
 
 First release.
